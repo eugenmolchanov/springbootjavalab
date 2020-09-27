@@ -15,6 +15,11 @@ import java.util.stream.Collectors;
 public class CountryServiceImpl implements CountryService {
 
     private final PopulationService populationService = new PopulationServiceImpl();
+    private final boolean showPopulation;
+
+    public CountryServiceImpl(boolean showPopulation) {
+        this.showPopulation = showPopulation;
+    }
 
     @Override
     public List<Country> neighbours(Country country) {
@@ -44,7 +49,11 @@ public class CountryServiceImpl implements CountryService {
     }
 
     private void printCountryInfo(Country country) {
-        System.out.println("Country: " + country.getName() + "; Population: " + customFormat("###,###.### millions", country.getPopulation()));
+        String details = "Country: " + country.getName();
+        if (showPopulation) {
+            details = details.concat("; Population: " + customFormat("###,###.### millions", country.getPopulation()));
+        }
+        System.out.println(details);
     }
 
     private String customFormat(String pattern, double value ) {
