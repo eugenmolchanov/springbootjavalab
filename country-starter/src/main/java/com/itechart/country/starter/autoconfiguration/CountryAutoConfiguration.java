@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnClass(CountryService.class)
 @EnableConfigurationProperties(CountryServiceProperties.class)
 public class CountryAutoConfiguration {
 
