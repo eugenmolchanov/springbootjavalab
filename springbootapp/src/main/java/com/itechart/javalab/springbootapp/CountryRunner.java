@@ -9,8 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CountryRunner implements CommandLineRunner {
 
-    @Autowired
-    private CountryService countryService;
+    private final CountryService countryService;
+
+    public CountryRunner(CountryService countryService) {
+        this.countryService = countryService;
+    }
 
     @Override
     public void run(String... args) throws Exception {
