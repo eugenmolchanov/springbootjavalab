@@ -15,4 +15,6 @@ public interface CustomDisciplineRepository {
     Optional<Discipline> findByName(String name);
 
     Page<Discipline> findAll(Pageable pageable);
+
+    Iterable<Discipline> saveAll(Iterable<Discipline> disciplines);
 }

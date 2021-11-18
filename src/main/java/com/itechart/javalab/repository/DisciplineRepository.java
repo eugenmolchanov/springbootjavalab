@@ -4,13 +4,13 @@ import com.itechart.javalab.model.Discipline;
 import com.itechart.javalab.model.projection.DisciplineNameOnly;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface DisciplineRepository extends JpaRepository<Discipline, Integer> {
+public interface DisciplineRepository extends CrudRepository<Discipline, String> {
 
     Optional<Discipline> findByName(String name);
 
@@ -22,4 +22,10 @@ public interface DisciplineRepository extends JpaRepository<Discipline, Integer>
     List<Discipline> findByFree(boolean isFree);
 
     List<DisciplineNameOnly> findAllByIsFree(Boolean isFree);
+    
+    List<Discipline> findByLecturerGivenNameIgnoreCase(String givenName);
+    
+    List<Discipline> findByLecturerFamilyName(String familyName);
+
+    void removeByName(String name);
 }
