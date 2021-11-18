@@ -1,18 +1,15 @@
 package com.itechart.javalab.model;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
+@Document
 @Data
 public class Lecturer {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    @MongoId
+    private String id;
     private String givenName;
     private String familyName;
 }

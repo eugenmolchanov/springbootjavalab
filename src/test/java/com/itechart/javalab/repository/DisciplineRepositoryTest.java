@@ -3,10 +3,12 @@ package com.itechart.javalab.repository;
 import com.itechart.javalab.model.Discipline;
 import com.itechart.javalab.model.Lecturer;
 import com.itechart.javalab.model.projection.DisciplineNameOnly;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DataJpaTest
+@DataMongoTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DisciplineRepositoryTest {
 
@@ -41,6 +43,12 @@ class DisciplineRepositoryTest {
                 discipline("Aesthetics", true, oldLecturer),
                 discipline("Political Philosophy", false, oldLecturer))
         );
+    }
+    
+    @AfterAll
+    void destroy() {
+        lecturerRepository.deleteAll();
+        disciplineRepository.deleteAll();
     }
     
     @Test

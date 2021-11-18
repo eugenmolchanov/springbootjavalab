@@ -4,7 +4,7 @@ import com.itechart.javalab.model.Discipline;
 import com.itechart.javalab.model.projection.DisciplineNameOnly;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public interface DisciplineRepository extends CrudRepository<Discipline, String>
 
     List<Discipline> findFirst3ByIsFree(Boolean isFree);
 
-    @Query("select d from Discipline d where isFree = ?1")
+    @Query("{'isFree': ?0}")
     List<Discipline> findByFree(boolean isFree);
 
     List<DisciplineNameOnly> findAllByIsFree(Boolean isFree);

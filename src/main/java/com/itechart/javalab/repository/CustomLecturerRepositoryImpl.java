@@ -2,21 +2,18 @@ package com.itechart.javalab.repository;
 
 import com.itechart.javalab.model.Lecturer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 @Repository
 @RequiredArgsConstructor
 public class CustomLecturerRepositoryImpl implements CustomLecturerRepository {
     
-    private final EntityManager entityManager;
+    private final MongoTemplate mongoTemplate;
     
     @Override
-    @Transactional
     public void customSave(Lecturer lecturer) {
-        entityManager.persist(lecturer);
+        mongoTemplate.save(lecturer);
         System.out.println("Lecturer saved within Custom repo");
     }
 }
